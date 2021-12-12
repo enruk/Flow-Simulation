@@ -1,5 +1,5 @@
 from tkinter import *
-from conveyor import conveyor
+
 
 class stopper(object):
     def __init__(self,number,canvas,xStartPos,yStartPos,length,width,color):
