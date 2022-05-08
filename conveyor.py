@@ -1,10 +1,13 @@
 from tkinter import *
 import random
-import unit
-import stopper
+from tokenize import Number
+from unit import *
+from stopper import *
+import switch
 
 class conveyor(object):
-    def __init__(self,canvas,xStartPos,yStartPos,thickness,xVelocity,yVelocity,totalPouches,color,stopper):
+    def __init__(self,canvas,number,xStartPos,yStartPos,thickness,xVelocity,yVelocity,totalPouches,color,switches,stopper):
+        self.number = number
         self.units = []
         self.xStartPos = xStartPos
         self.yStartPos = yStartPos
@@ -12,11 +15,11 @@ class conveyor(object):
         self.xVelocity = xVelocity
         self.yVelocity = yVelocity
         self.totalPouches = totalPouches
-        self.color = color
-        self.stopper = stopper          # Needs to be a list
-
+        self.color = color         # Needs to be a list
+        self.switches = switches
+        self.stopper = stopper
         for i in range(totalPouches):
-            self.units.append(unit(i,canvas,xStartPos,yStartPos+i*100,thickness,xVelocity,yVelocity,color))
+            self.units.append(unit(i,canvas,self,thickness,color))
 
     
     def check_collision_right(self,pouch_number):
@@ -25,12 +28,10 @@ class conveyor(object):
                         
             
             if (self.units[pouch_number-1].coordinates[0] - self.units[pouch_number].coordinates[2]<12 or self.stopper.coordinates[0] - self.units[pouch_number].coordinates[2]<30):
-                print('Hello')
                 self.units[pouch_number].xVelocity = 0
                 self.units[pouch_number].yVelocity = 0
             
             else:
-                print('Moin')
                 self.units[pouch_number].xVelocity = self.xVelocity
                 self.units[pouch_number].yVelocity = self.yVelocity
                 
@@ -75,3 +76,11 @@ class conveyor(object):
             else:
                 self.units[pouch_number].xVelocity = self.xVelocity
                 self.units[pouch_number].yVelocity = self.yVelocity
+                
+                
+      
+    def check_unit_at_switch(self,pouch_number):
+        divert_switch = self.units[pouch_number].destination_switch
+        if abs(self.units[pouch_number].coordinates[2] - self.switches[divert_switch].coordinates[2])<30:
+            self.units[pouch_number].needs_to_switch = TRUE
+            print('Unit needs to switch')

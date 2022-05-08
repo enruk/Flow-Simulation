@@ -1,6 +1,7 @@
 from tkinter import *
 import random
 import unit
+from conveyor import *
 
 class switch(object):
     def __init__(self,number,canvas,xStartPos,yStartPos,length,width,color):
@@ -11,5 +12,6 @@ class switch(object):
         self.coordinates = self.canvas.coords(self.image)
         self.actived = False
         
-    def call_switch(unit,src_conveyor,des_conveyor):
+        
+    
         
