@@ -25,15 +25,24 @@ class conveyor(object):
     def check_collision_right(self,pouch_number):
         if pouch_number > 0:
             # After moving, check if collision with: next unit in the list, stopper or switch
-                        
             
-            if (self.units[pouch_number-1].coordinates[0] - self.units[pouch_number].coordinates[2]<12 or self.stopper.coordinates[0] - self.units[pouch_number].coordinates[2]<30):
-                self.units[pouch_number].xVelocity = 0
-                self.units[pouch_number].yVelocity = 0
-            
+            if (self.stopper!= 0):     
+                if (self.units[pouch_number-1].coordinates[0] - self.units[pouch_number].coordinates[2]<30 or self.stopper.coordinates[0] - self.units[pouch_number].coordinates[2]<30):
+                    self.units[pouch_number].xVelocity = 0
+                    self.units[pouch_number].yVelocity = 0
+                
+                else:
+                    self.units[pouch_number].xVelocity = self.xVelocity
+                    self.units[pouch_number].yVelocity = self.yVelocity
+                    
             else:
-                self.units[pouch_number].xVelocity = self.xVelocity
-                self.units[pouch_number].yVelocity = self.yVelocity
+                if (self.units[pouch_number-1].coordinates[0] - self.units[pouch_number].coordinates[2]<30):
+                    self.units[pouch_number].xVelocity = 0
+                    self.units[pouch_number].yVelocity = 0
+                
+                else:
+                    self.units[pouch_number].xVelocity = self.xVelocity
+                    self.units[pouch_number].yVelocity = self.yVelocity
                 
                 
                 
@@ -41,13 +50,22 @@ class conveyor(object):
         if pouch_number > 0:
             # After moving, check if collision with pouch in front
             
-            if (abs(self.units[pouch_number-1].coordinates[2] - self.units[pouch_number].coordinates[0])<12 or abs(self.stopper.coordinates[2] - self.units[pouch_number].coordinates[0])<30):
-                self.units[pouch_number].xVelocity = 0
-                self.units[pouch_number].yVelocity = 0
-              
+            if (self.stopper!= 0): 
+                if (abs(self.units[pouch_number-1].coordinates[2] - self.units[pouch_number].coordinates[0])<30 or abs(self.stopper.coordinates[2] - self.units[pouch_number].coordinates[0])<30):
+                    self.units[pouch_number].xVelocity = 0
+                    self.units[pouch_number].yVelocity = 0
+                
+                else:
+                    self.units[pouch_number].xVelocity = self.xVelocity
+                    self.units[pouch_number].yVelocity = self.yVelocity
             else:
-                self.units[pouch_number].xVelocity = self.xVelocity
-                self.units[pouch_number].yVelocity = self.yVelocity
+                if (abs(self.units[pouch_number-1].coordinates[2] - self.units[pouch_number].coordinates[0])<30):
+                    self.units[pouch_number].xVelocity = 0
+                    self.units[pouch_number].yVelocity = 0
+                
+                else:
+                    self.units[pouch_number].xVelocity = self.xVelocity
+                    self.units[pouch_number].yVelocity = self.yVelocity
                 
                 
                 
@@ -55,13 +73,22 @@ class conveyor(object):
         if pouch_number > 0:
             # After moving, check if collision with pouch in front
             
-            if (abs(self.units[pouch_number-1].coordinates[3] - self.units[pouch_number].coordinates[1])<12 or abs(self.stopper.coordinates[3] - self.units[pouch_number].coordinates[1])<30):
-                self.units[pouch_number].xVelocity = 0
-                self.units[pouch_number].yVelocity = 0
-              
+            if (self.stopper!= 0):
+                if (abs(self.units[pouch_number-1].coordinates[3] - self.units[pouch_number].coordinates[1])<30 or abs(self.stopper.coordinates[3] - self.units[pouch_number].coordinates[1])<30):
+                    self.units[pouch_number].xVelocity = 0
+                    self.units[pouch_number].yVelocity = 0
+                
+                else:
+                    self.units[pouch_number].xVelocity = self.xVelocity
+                    self.units[pouch_number].yVelocity = self.yVelocity
             else:
-                self.units[pouch_number].xVelocity = self.xVelocity
-                self.units[pouch_number].yVelocity = self.yVelocity
+                if (abs(self.units[pouch_number-1].coordinates[3] - self.units[pouch_number].coordinates[1])<30):
+                    self.units[pouch_number].xVelocity = 0
+                    self.units[pouch_number].yVelocity = 0
+                
+                else:
+                    self.units[pouch_number].xVelocity = self.xVelocity
+                    self.units[pouch_number].yVelocity = self.yVelocity
     
     
     
@@ -69,14 +96,22 @@ class conveyor(object):
         if pouch_number > 0:
             # After moving, check if collision with pouch in front
             
-            if (abs(self.units[pouch_number-1].coordinates[1] - self.units[pouch_number].coordinates[3])<12 or abs(self.stopper.coordinates[1] - self.units[pouch_number].coordinates[3])<30):
-                self.units[pouch_number].xVelocity = 0
-                self.units[pouch_number].yVelocity = 0
-              
-            else:
-                self.units[pouch_number].xVelocity = self.xVelocity
-                self.units[pouch_number].yVelocity = self.yVelocity
+            if (self.stopper!= 0):
+                if (abs(self.units[pouch_number-1].coordinates[1] - self.units[pouch_number].coordinates[3])<30 or abs(self.stopper.coordinates[1] - self.units[pouch_number].coordinates[3])<30):
+                    self.units[pouch_number].xVelocity = 0
+                    self.units[pouch_number].yVelocity = 0
                 
+                else:
+                    self.units[pouch_number].xVelocity = self.xVelocity
+                    self.units[pouch_number].yVelocity = self.yVelocity
+            else:
+                if (abs(self.units[pouch_number-1].coordinates[1] - self.units[pouch_number].coordinates[3])<30):
+                    self.units[pouch_number].xVelocity = 0
+                    self.units[pouch_number].yVelocity = 0
+                
+                else:
+                    self.units[pouch_number].xVelocity = self.xVelocity
+                    self.units[pouch_number].yVelocity = self.yVelocity
                 
       
     def check_unit_at_switch(self,pouch_number):

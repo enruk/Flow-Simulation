@@ -15,7 +15,7 @@ class unit(object):
         self.yVelocity = self.conveyor.yVelocity    
         self.color = self.conveyor.color 
         self.thickness = thickness   
-        self.image = canvas.create_rectangle(self.xStartPos,self.yStartPos,self.xStartPos+self.thickness,self.yStartPos+self.thickness,fill=self.color)
+        self.image = canvas.create_rectangle(self.xStartPos,self.yStartPos,self.xStartPos+self.thickness,self.yStartPos+45,fill=self.color)
         self.destination_switch = destination_switch
         self.coordinates = self.canvas.coords(self.image)
         self.needs_to_switch = FALSE
@@ -38,7 +38,7 @@ class unit(object):
         if(self.coordinates[2]>=(self.canvas.winfo_width()) or self.coordinates[0]<0):
             self.xVelocity = 0
 
-        if(self.coordinates[3]>=(self.canvas.winfo_height()) or self.coordinates[1]<0):
+        if(self.coordinates[3]+50>=(self.canvas.winfo_height()) or self.coordinates[1]-50<0):
             self.yVelocity = 0
         
        
@@ -64,5 +64,11 @@ class unit(object):
         self.coordinates = self.canvas.coords(self.image)
         self.check_collision_wall()
         self.canvas.move(self.image,0,self.yVelocity)
+        
+        
+    def self_turn_90(self):
+        self.coordinates = self.canvas.coords(self.image)
+        self.canvas.delete(self.image)                      # Delete old image and make new one
+        self.image = self.canvas.create_rectangle(self.coordinates[0],self.coordinates[1],self.coordinates[0]+45,self.coordinates[1]+self.thickness,fill=self.color)
         
         
